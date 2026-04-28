@@ -89,6 +89,50 @@ const GENERIC_ENTITY_TOKENS = new Set([
   "user",
 ]);
 
+const TOOL_REFERENCE_STOPWORDS = new Set([
+  "AFTER_ENRICHMENT_ITEM",
+  "AFTER_MEDIA_ITEM",
+  "BOTTOM_LEGEND",
+  "CARIBBEAN_GREEN",
+  "CATEGORY_FORUMS",
+  "CATEGORY_PERSONAL",
+  "CATEGORY_PROMOTIONS",
+  "CATEGORY_SOCIAL",
+  "CATEGORY_UPDATES",
+  "COMPATIBILITY_UNSPECIFIED",
+  "COMPATIBLE",
+  "CONSTRAINT",
+  "CRITICAL",
+  "DATA_SOURCE",
+  "DELETED",
+  "EXISTING",
+  "FIRST_IN_ALBUM",
+  "FORMATTED_STRING",
+  "FORMATTED_VALUE",
+  "IMPORTANT",
+  "INCOMPATIBLE",
+  "INPUT_VALUE_OPTION_UNSPECIFIED",
+  "INVALID_ARGUMENT",
+  "LAST_IN_ALBUM",
+  "LEFT_LEGEND",
+  "LIMITATION",
+  "NO_LEGEND",
+  "REPORT_COMPATIBLE",
+  "REQUIRED",
+  "REQUIRES",
+  "RFC3339",
+  "RFC5545",
+  "RIGHT_LEGEND",
+  "ROYAL_BLUE",
+  "SERIAL_NUMBER",
+  "SPREADSHEET_ID",
+  "TOP_LEGEND",
+  "USER_ENTERED",
+  "WITHOUT",
+  "YYYYMMDD",
+  "YYYYMMDDTHHMMSSZ",
+]);
+
 await main();
 
 async function main() {
@@ -298,9 +342,14 @@ function findRequiredFields(schema: Record<string, unknown>): string[] {
 
 function inferHeuristicEdges(tools: ToolSummary[]): DependencyEdge[] {
   const edges: DependencyEdge[] = [];
+  const toolLookup = createToolLookup(tools);
 
   for (const target of tools) {
     for (const input of target.requiredParameters) {
+      const explicitEdges = explicitDependencyEdges(target, input, toolLookup);
+      edges.push(...explicitEdges);
+
+      if (explicitEdges.length > 0) continue;
       if (isPrimitiveUserInput(input.name)) continue;
 
       const candidates = tools
@@ -308,9 +357,9 @@ function inferHeuristicEdges(tools: ToolSummary[]): DependencyEdge[] {
         .filter((source) => source.toolkit === target.toolkit)
         .filter((source) => producerVerbScore(source) > 0)
         .map((source) => scoreDependency(source, target, input))
-        .filter((candidate) => candidate.confidence >= 0.55)
+        .filter((candidate) => candidate.confidence >= 0.68)
         .sort((a, b) => b.confidence - a.confidence)
-        .slice(0, 2);
+        .slice(0, 1);
 
       for (const candidate of candidates) {
         edges.push({
@@ -328,11 +377,116 @@ function inferHeuristicEdges(tools: ToolSummary[]): DependencyEdge[] {
   return edges;
 }
 
+function createToolLookup(tools: ToolSummary[]) {
+  const byToolkit = new Map<Toolkit, ToolSummary[]>();
+  for (const tool of tools) {
+    byToolkit.set(tool.toolkit, [...(byToolkit.get(tool.toolkit) ?? []), tool]);
+  }
+  return byToolkit;
+}
+
+function explicitDependencyEdges(
+  target: ToolSummary,
+  input: ToolParameter,
+  toolLookup: Map<Toolkit, ToolSummary[]>,
+): DependencyEdge[] {
+  const description = input.description ?? "";
+  const referencedTools = extractReferencedTools(
+    description,
+    target.toolkit,
+    toolLookup,
+  );
+
+  return referencedTools
+    .filter((source) => source.id !== target.id)
+    .slice(0, 3)
+    .map((source) => ({
+      from: source.id,
+      to: target.id,
+      input: input.name,
+      confidence: 0.98,
+      reason: `input description explicitly references ${source.name}`,
+      source: "heuristic" as const,
+    }));
+}
+
+function extractReferencedTools(
+  description: string,
+  toolkit: Toolkit,
+  toolLookup: Map<Toolkit, ToolSummary[]>,
+) {
+  const tools = toolLookup.get(toolkit) ?? [];
+  const seen = new Set<string>();
+  const matches = description.match(/\b[A-Z][A-Z0-9_]{5,}\b/g) ?? [];
+  const resolved: ToolSummary[] = [];
+
+  for (const match of matches) {
+    if (!match.includes("_")) continue;
+    if (TOOL_REFERENCE_STOPWORDS.has(match)) continue;
+
+    const suffix = normalizeReferencedTool(match);
+    if (!suffix || suffix.length < 4) continue;
+
+    const candidates = tools
+      .filter((tool) => tool.name.endsWith(suffix))
+      .sort((a, b) => a.name.length - b.name.length);
+    const candidate = candidates[0];
+    if (!candidate || seen.has(candidate.id)) continue;
+
+    seen.add(candidate.id);
+    resolved.push(candidate);
+  }
+
+  return resolved;
+}
+
+function normalizeReferencedTool(reference: string) {
+  const vendorPrefixes = [
+    "ADS",
+    "ANALYTICS",
+    "CALENDAR",
+    "DOCS",
+    "DRIVE",
+    "GMAIL",
+    "GOOGLE",
+    "GOOGLEADS",
+    "GOOGLEANALYTICS",
+    "GOOGLECALENDAR",
+    "GOOGLEDOCS",
+    "GOOGLEDRIVE",
+    "GOOGLEMEET",
+    "GOOGLEPHOTOS",
+    "GOOGLESHEETS",
+    "GOOGLESLIDES",
+    "GOOGLETASKS",
+    "MEET",
+    "PHOTOS",
+    "SHEETS",
+    "SLIDES",
+    "TASKS",
+    "GITHUB",
+  ];
+  const parts = reference.split("_");
+  while (parts.length > 1 && vendorPrefixes.includes(parts[0] ?? "")) {
+    parts.shift();
+  }
+  if (parts.length < 2) return "";
+  return parts.join("_");
+}
+
 function scoreDependency(
   source: ToolSummary,
   target: ToolSummary,
   input: ToolParameter,
 ) {
+  if (!isResourceLikeInput(input.name)) {
+    return {
+      source,
+      confidence: 0,
+      reason: "fallback inference only links resource-like identifiers",
+    };
+  }
+
   const inputTokens = tokens(input.name);
   const entityTokens = inputTokens.filter(
     (token) => !PARAMETER_STOPWORDS.has(token),
@@ -357,6 +511,7 @@ function scoreDependency(
   const nonGenericTokens = entityTokens.filter(
     (token) => !GENERIC_ENTITY_TOKENS.has(token),
   );
+  let matchedNonGeneric = false;
   const tokensWorthMatching =
     nonGenericTokens.length > 0 || entityTokens.length > 1
       ? entityTokens
@@ -366,8 +521,17 @@ function scoreDependency(
     if (sourceText.includes(token)) {
       score += token === "id" ? 0.08 : 0.22;
       reasons.push(`source mentions '${token}'`);
+      if (nonGenericTokens.includes(token)) matchedNonGeneric = true;
     }
     if (targetText.includes(token)) score += token === "id" ? 0.03 : 0.06;
+  }
+
+  if (nonGenericTokens.length > 0 && !matchedNonGeneric) {
+    return {
+      source,
+      confidence: 0,
+      reason: "source did not match the specific input entity",
+    };
   }
 
   const base = entityTokens.filter((token) => token !== "id").join("_");
@@ -380,14 +544,6 @@ function scoreDependency(
     reasons.push(`source matches the input entity '${base}'`);
   }
 
-  if (input.description) {
-    for (const token of tokens(input.description).filter(
-      (token) => token.length > 3,
-    )) {
-      if (sourceText.includes(token)) score += 0.03;
-    }
-  }
-
   if (source.name.includes("DELETE") || source.name.includes("CREATE"))
     score -= 0.18;
   if (source.name.includes("SEND") || source.name.includes("UPDATE"))
@@ -398,6 +554,19 @@ function scoreDependency(
     confidence: Math.min(0.95, Number(score.toFixed(2))),
     reason: reasons.slice(0, 3).join("; ") || "input/source names are related",
   };
+}
+
+function isResourceLikeInput(input: string) {
+  const normalized = input.toLowerCase();
+  return (
+    normalized.includes("id") ||
+    normalized.includes("number") ||
+    normalized.includes("sha") ||
+    normalized === "ref" ||
+    normalized === "branch" ||
+    normalized === "path" ||
+    normalized.endsWith("_url")
+  );
 }
 
 function producerVerbScore(tool: ToolSummary) {
@@ -427,6 +596,8 @@ function isPrimitiveUserInput(input: string) {
     [
       "access_token",
       "action",
+      "account",
+      "address_query",
       "body",
       "color",
       "content",
@@ -437,15 +608,24 @@ function isPrimitiveUserInput(input: string) {
       "message",
       "name",
       "names",
+      "operation",
+      "org",
+      "owner",
       "package_name",
       "package_type",
       "permission",
       "permissions",
       "q",
       "query",
+      "repo",
+      "requests",
+      "sql",
       "state",
       "text",
       "title",
+      "type",
+      "userid",
+      "username",
       "visibility",
     ].includes(normalized) ||
     normalized.endsWith("_name") ||

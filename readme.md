@@ -57,9 +57,14 @@ toolkits by:
 2. extracting tool names, descriptions, required inputs, and input schemas
 3. inferring prerequisite edges where one retrieval/search/list tool can provide
    a required input for another tool
-4. optionally asking an LLM through OpenRouter to add high-confidence edges when
+4. prioritizing explicit references inside parameter descriptions, such as
+   "get message IDs from GMAIL_FETCH_EMAILS or GMAIL_LIST_THREADS"
+5. conservatively marking broad context fields such as owner, repo, org,
+   username, content, and query as user/context inputs instead of inventing weak
+   dependency edges
+6. optionally asking an LLM through OpenRouter to add high-confidence edges when
    `OPENROUTER_API_KEY` is available and has credits
-5. writing machine-readable and human-readable graph artifacts
+7. writing machine-readable and human-readable graph artifacts
 
 Generated outputs are written to `artifacts/`:
 

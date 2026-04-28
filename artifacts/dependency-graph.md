@@ -1,221 +1,221 @@
 # Composio Tool Dependency Graph
 
-Generated at: 2026-04-28T14:27:04.339Z
+Generated at: 2026-04-28T14:41:13.528Z
 
 Toolkits: googlesuper, github
 
 ## Summary
 
 - Tools analyzed: 1304
-- Dependency edges: 4421
-- Required inputs without confident upstream tools: 351
+- Dependency edges: 577
+- Required inputs without confident upstream tools: 2024
 
 ## Highest-confidence edges
 
 | Source | Target | Input | Confidence | Source | Reason |
 | --- | --- | --- | ---: | --- | --- |
-| github:GITHUB_AUTH_USER_DOCKER_CONFLICT_PACKAGES_LIST | github:GITHUB_GET_A_PACKAGE_VERSION_FOR_A_USER | `package_version_id` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions 'package' |
-| github:GITHUB_AUTH_USER_DOCKER_CONFLICT_PACKAGES_LIST | github:GITHUB_SET_WORKFLOW_EXTERNAL_ACCESS | `access_level` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions 'access' |
-| github:GITHUB_CREATE_USER_LIST | github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `users` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'users'; source mentions 'users' |
-| github:GITHUB_CREATE_USER_LIST | github:GITHUB_REMOVE_USER_ACCESS_RESTRICTIONS | `users` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'users'; source mentions 'users' |
-| github:GITHUB_CREATE_USER_LIST | github:GITHUB_SET_USER_ACCESS_RESTRICTIONS | `users` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'users'; source mentions 'users' |
-| github:GITHUB_FIND_PULL_REQUESTS | github:GITHUB_GET_RAW_REPOSITORY_CONTENT | `repo` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'repo' |
-| github:GITHUB_FIND_PULL_REQUESTS | github:GITHUB_LIST_PULL_REQUESTS | `repo` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'repo' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_APP_ACCESS_RESTRICTIONS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_ASSIGNEES_TO_AN_ISSUE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_LABELS_TO_AN_ISSUE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_RUNNER_LABELS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CANCEL_GITHUB_PAGES_DEPLOYMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CANCEL_WORKFLOW_RUN | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CHECK_IF_PULL_REQUEST_HAS_BEEN_MERGED | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CHECK_IF_USER_IS_REPOSITORY_COLLABORATOR | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CHECK_PRIVATE_VULNERABILITY_REPORTING_STATUS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CLEAR_REPOSITORY_CACHE_BY_KEY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_COMMIT_MULTIPLE_FILES | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_COMPARE_TWO_COMMITS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_BLOB | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_CHECK_RUN | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_CHECK_SUITE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_CODESPACE_FROM_A_PULL_REQUEST | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_CODESPACE_IN_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_COMMIT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_COMMIT_COMMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_COMMIT_STATUS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_DEPLOY_KEY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_DEPLOYMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_DEPLOYMENT_BRANCH_POLICY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_DEPLOYMENT_STATUS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_FORK | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_GITHUB_PAGES_DEPLOYMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_GITHUB_PAGES_SITE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_LABEL | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_MILESTONE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_PULL_REQUEST | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REFERENCE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REGISTRATION_TOKEN_FOR_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_RELEASE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REMOVE_TOKEN_FOR_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REPLY_FOR_A_REVIEW_COMMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REPOSITORY_DISPATCH_EVENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REPOSITORY_PROJECT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REPOSITORY_RULESET | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REPOSITORY_VARIABLE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REPOSITORY_WEBHOOK | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REVIEW_COMMENT_FOR_A_PULL_REQUEST | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_REVIEW_FOR_A_PULL_REQUEST | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_SNAPSHOT_OF_DEPENDENCIES_FOR_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_TAG_OBJECT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_TAG_PROTECTION_STATE_FOR_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_TEMPORARY_PRIVATE_FORK | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_TREE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_A_WORKFLOW_DISPATCH_EVENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_AN_AUTOLINK_REFERENCE_FOR_A_REPOSITORY | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_AN_ENVIRONMENT_VARIABLE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_AN_ISSUE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_AN_ISSUE_COMMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_COMMIT_SIGNATURE_PROTECTION | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_DEPLOYMENT_PROTECTION_RULE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_JIT_RUNNER_CONFIG | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_OR_UPDATE_A_REPOSITORY_SECRET | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_OR_UPDATE_AN_ENVIRONMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_OR_UPDATE_AN_ENVIRONMENT_SECRET | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_OR_UPDATE_FILE_CONTENTS | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_OR_UPDATE_GITHUB_PAGES_SITE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_OR_UPDATE_REPO_SECRET_WITH_ENCRYPTED_VALUE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_REACTION_FOR_A_COMMIT_COMMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_REACTION_FOR_A_PULL_REQUEST_REVIEW_COMMENT | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
-| github:GITHUB_FIND_REPOSITORIES | github:GITHUB_CREATE_REACTION_FOR_A_RELEASE | `owner` | 0.95 | heuristic | source is a retrieval/list/search style tool; source mentions exact input 'owner'; source mentions 'owner' |
+| github:GITHUB_FIND_PULL_REQUESTS | github:GITHUB_LIST_PULL_REQUESTS | `owner` | 0.98 | heuristic | input description explicitly references GITHUB_FIND_PULL_REQUESTS |
+| github:GITHUB_FIND_PULL_REQUESTS | github:GITHUB_LIST_PULL_REQUESTS | `repo` | 0.98 | heuristic | input description explicitly references GITHUB_FIND_PULL_REQUESTS |
+| github:GITHUB_GET_A_RELEASE_BY_TAG_NAME | github:GITHUB_GET_A_COMMIT | `ref` | 0.98 | heuristic | input description explicitly references GITHUB_GET_A_RELEASE_BY_TAG_NAME |
+| github:GITHUB_GET_A_RELEASE_BY_TAG_NAME | github:GITHUB_GET_COMMIT_STATUSES | `ref` | 0.98 | heuristic | input description explicitly references GITHUB_GET_A_RELEASE_BY_TAG_NAME |
+| github:GITHUB_GET_A_RELEASE_BY_TAG_NAME | github:GITHUB_LIST_CHECK_SUITES_FOR_A_GIT_REFERENCE | `ref` | 0.98 | heuristic | input description explicitly references GITHUB_GET_A_RELEASE_BY_TAG_NAME |
+| github:GITHUB_GET_A_TREE | github:GITHUB_GET_RAW_REPOSITORY_CONTENT | `path` | 0.98 | heuristic | input description explicitly references GITHUB_GET_A_TREE |
+| github:GITHUB_LIST_APP_INSTALLATIONS | github:GITHUB_LIST_ACCESSIBLE_REPOSITORIES | `installation_id` | 0.98 | heuristic | input description explicitly references GITHUB_LIST_APP_INSTALLATIONS |
+| github:GITHUB_LIST_ARTIFACTS_FOR_A_REPOSITORY | github:GITHUB_DOWNLOAD_AN_ARTIFACT | `artifact_id` | 0.98 | heuristic | input description explicitly references GITHUB_LIST_ARTIFACTS_FOR_A_REPOSITORY |
+| github:GITHUB_LIST_ORG_RESOURCE_ACCESS_TOKENS | github:GITHUB_UPDATE_TOKEN_ORG_ACCESS | `pat_id` | 0.98 | heuristic | input description explicitly references GITHUB_LIST_ORG_RESOURCE_ACCESS_TOKENS |
+| github:GITHUB_LIST_WORKFLOW_RUN_ARTIFACTS | github:GITHUB_DOWNLOAD_AN_ARTIFACT | `artifact_id` | 0.98 | heuristic | input description explicitly references GITHUB_LIST_WORKFLOW_RUN_ARTIFACTS |
+| googlesuper:GOOGLESUPER_ADD_LABEL_TO_EMAIL | googlesuper:GOOGLESUPER_DELETE_LABEL | `label_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_ADD_LABEL_TO_EMAIL |
+| googlesuper:GOOGLESUPER_APPEND_DIMENSION | googlesuper:GOOGLESUPER_VALUES_UPDATE | `range` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_APPEND_DIMENSION |
+| googlesuper:GOOGLESUPER_BATCH_DELETE_MESSAGES | googlesuper:GOOGLESUPER_DELETE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_BATCH_DELETE_MESSAGES |
+| googlesuper:GOOGLESUPER_COPY_FILE | googlesuper:GOOGLESUPER_EDIT_FILE | `content` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_COPY_FILE |
+| googlesuper:GOOGLESUPER_CREATE_COMMENT | googlesuper:GOOGLESUPER_DELETE_COMMENT | `comment_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_COMMENT |
+| googlesuper:GOOGLESUPER_CREATE_DOCUMENT | googlesuper:GOOGLESUPER_UPDATE_DOCUMENT_SECTION_MARKDOWN | `document_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_DOCUMENT |
+| googlesuper:GOOGLESUPER_CREATE_EMAIL_DRAFT | googlesuper:GOOGLESUPER_DELETE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_EMAIL_DRAFT |
+| googlesuper:GOOGLESUPER_CREATE_EMAIL_DRAFT | googlesuper:GOOGLESUPER_SEND_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_EMAIL_DRAFT |
+| googlesuper:GOOGLESUPER_CREATE_EMAIL_DRAFT | googlesuper:GOOGLESUPER_UPDATE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_EMAIL_DRAFT |
+| googlesuper:GOOGLESUPER_CREATE_FOOTER | googlesuper:GOOGLESUPER_DELETE_FOOTER | `footer_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_FOOTER |
+| googlesuper:GOOGLESUPER_EVENTS_INSTANCES | googlesuper:GOOGLESUPER_DELETE_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_INSTANCES |
+| googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_EVENTS_GET | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
+| googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_EVENTS_INSTANCES | `eventId` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
+| googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_PATCH_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
+| googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_UPDATE_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
+| googlesuper:GOOGLESUPER_FETCH_EMAILS | googlesuper:GOOGLESUPER_ADD_LABEL_TO_EMAIL | `message_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_EMAILS |
+| googlesuper:GOOGLESUPER_FETCH_EMAILS | googlesuper:GOOGLESUPER_BATCH_DELETE_MESSAGES | `messageIds` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_EMAILS |
+| googlesuper:GOOGLESUPER_FETCH_EMAILS | googlesuper:GOOGLESUPER_BATCH_MODIFY_MESSAGES | `messageIds` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_EMAILS |
+| googlesuper:GOOGLESUPER_FETCH_EMAILS | googlesuper:GOOGLESUPER_FETCH_MESSAGE_BY_THREAD_ID | `thread_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_EMAILS |
+| googlesuper:GOOGLESUPER_FETCH_EMAILS | googlesuper:GOOGLESUPER_LIST_HISTORY | `start_history_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_EMAILS |
+| googlesuper:GOOGLESUPER_FETCH_EMAILS | googlesuper:GOOGLESUPER_REPLY_TO_THREAD | `thread_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_EMAILS |
+| googlesuper:GOOGLESUPER_FETCH_MESSAGE_BY_MESSAGE_ID | googlesuper:GOOGLESUPER_GET_ATTACHMENT | `attachment_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_MESSAGE_BY_MESSAGE_ID |
+| googlesuper:GOOGLESUPER_FETCH_MESSAGE_BY_THREAD_ID | googlesuper:GOOGLESUPER_ADD_LABEL_TO_EMAIL | `message_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_MESSAGE_BY_THREAD_ID |
+| googlesuper:GOOGLESUPER_FETCH_MESSAGE_BY_THREAD_ID | googlesuper:GOOGLESUPER_FETCH_MESSAGE_BY_MESSAGE_ID | `message_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FETCH_MESSAGE_BY_THREAD_ID |
+| googlesuper:GOOGLESUPER_FIND_EVENT | googlesuper:GOOGLESUPER_EVENTS_INSTANCES | `eventId` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_EVENT |
+| googlesuper:GOOGLESUPER_FIND_EVENT | googlesuper:GOOGLESUPER_PATCH_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_EVENT |
+| googlesuper:GOOGLESUPER_FIND_EVENT | googlesuper:GOOGLESUPER_UPDATE_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_EVENT |
+| googlesuper:GOOGLESUPER_FIND_FILE | googlesuper:GOOGLESUPER_ADD_FILE_SHARING_PREFERENCE | `file_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_FILE |
+| googlesuper:GOOGLESUPER_FIND_FILE | googlesuper:GOOGLESUPER_EDIT_FILE | `file_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_FILE |
+| googlesuper:GOOGLESUPER_FIND_FILE | googlesuper:GOOGLESUPER_GET_FILE_METADATA | `fileId` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_FILE |
+| googlesuper:GOOGLESUPER_FIND_FILE | googlesuper:GOOGLESUPER_UPDATE_FILE_REVISION_METADATA | `file_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_FIND_FILE |
+| googlesuper:GOOGLESUPER_GET_DOCUMENT_BY_ID | googlesuper:GOOGLESUPER_DELETE_FOOTER | `footer_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_DOCUMENT_BY_ID |
+| googlesuper:GOOGLESUPER_GET_DOCUMENT_BY_ID | googlesuper:GOOGLESUPER_UPDATE_EXISTING_DOCUMENT | `edit_docs` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_DOCUMENT_BY_ID |
+| googlesuper:GOOGLESUPER_GET_METADATA | googlesuper:GOOGLESUPER_CREATE_AUDIENCE_LIST | `dimensions` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_METADATA |
+| googlesuper:GOOGLESUPER_GET_PROFILE | googlesuper:GOOGLESUPER_LIST_HISTORY | `start_history_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_PROFILE |
+| googlesuper:GOOGLESUPER_GET_SPREADSHEET_INFO | googlesuper:GOOGLESUPER_MUTATE_CONDITIONAL_FORMAT_RULES | `sheet_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_SPREADSHEET_INFO |
+| googlesuper:GOOGLESUPER_GET_SPREADSHEET_INFO | googlesuper:GOOGLESUPER_SET_DATA_VALIDATION_RULE | `sheet_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_SPREADSHEET_INFO |
+| googlesuper:GOOGLESUPER_GET_SPREADSHEET_INFO | googlesuper:GOOGLESUPER_VALUES_UPDATE | `range` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_GET_SPREADSHEET_INFO |
+| googlesuper:GOOGLESUPER_LIST_ACCOUNTS | googlesuper:GOOGLESUPER_LIST_PROPERTIES | `account` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_ACCOUNTS |
+| googlesuper:GOOGLESUPER_LIST_CALENDARS | googlesuper:GOOGLESUPER_CALENDAR_LIST_UPDATE | `calendar_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_CALENDARS |
+| googlesuper:GOOGLESUPER_LIST_CALENDARS | googlesuper:GOOGLESUPER_PATCH_CALENDAR | `calendar_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_CALENDARS |
+| googlesuper:GOOGLESUPER_LIST_COMMENTS | googlesuper:GOOGLESUPER_DELETE_COMMENT | `comment_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_COMMENTS |
+| googlesuper:GOOGLESUPER_LIST_CONFERENCE_RECORDS | googlesuper:GOOGLESUPER_LIST_PARTICIPANTS | `parent` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_CONFERENCE_RECORDS |
+| googlesuper:GOOGLESUPER_LIST_DRAFTS | googlesuper:GOOGLESUPER_DELETE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_DRAFTS |
+| googlesuper:GOOGLESUPER_LIST_DRAFTS | googlesuper:GOOGLESUPER_GET_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_DRAFTS |
+| googlesuper:GOOGLESUPER_LIST_DRAFTS | googlesuper:GOOGLESUPER_SEND_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_DRAFTS |
+| googlesuper:GOOGLESUPER_LIST_DRAFTS | googlesuper:GOOGLESUPER_UPDATE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_DRAFTS |
+| googlesuper:GOOGLESUPER_LIST_FILES | googlesuper:GOOGLESUPER_ADD_FILE_SHARING_PREFERENCE | `file_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_FILES |
+| googlesuper:GOOGLESUPER_LIST_FILES | googlesuper:GOOGLESUPER_GET_FILE_METADATA | `fileId` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_FILES |
+| googlesuper:GOOGLESUPER_LIST_FILES | googlesuper:GOOGLESUPER_UPDATE_FILE_REVISION_METADATA | `file_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_FILES |
+| googlesuper:GOOGLESUPER_LIST_FILTERS | googlesuper:GOOGLESUPER_DELETE_FILTER | `filter_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_FILTERS |
+| googlesuper:GOOGLESUPER_LIST_LABELS | googlesuper:GOOGLESUPER_CREATE_LABEL | `label_name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_LABELS |
+| googlesuper:GOOGLESUPER_LIST_PARTICIPANT_SESSIONS | googlesuper:GOOGLESUPER_GET_PARTICIPANT_SESSION | `name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_PARTICIPANT_SESSIONS |
+| googlesuper:GOOGLESUPER_LIST_PERMISSIONS | googlesuper:GOOGLESUPER_DELETE_PERMISSION | `permission_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_PERMISSIONS |
+| googlesuper:GOOGLESUPER_LIST_PERMISSIONS | googlesuper:GOOGLESUPER_GET_PERMISSION | `permission_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_PERMISSIONS |
+| googlesuper:GOOGLESUPER_LIST_PERMISSIONS | googlesuper:GOOGLESUPER_PATCH_PERMISSION | `permission_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_PERMISSIONS |
+| googlesuper:GOOGLESUPER_LIST_PROPERTIES | googlesuper:GOOGLESUPER_RUN_REALTIME_REPORT | `property` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_PROPERTIES |
+| googlesuper:GOOGLESUPER_LIST_REVISIONS | googlesuper:GOOGLESUPER_DELETE_REVISION | `revision_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_REVISIONS |
+| googlesuper:GOOGLESUPER_LIST_REVISIONS | googlesuper:GOOGLESUPER_UPDATE_FILE_REVISION_METADATA | `revision_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_REVISIONS |
+| googlesuper:GOOGLESUPER_LIST_TABLES | googlesuper:GOOGLESUPER_GET_TABLE_SCHEMA | `table_name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_TABLES |
+| googlesuper:GOOGLESUPER_LIST_TABLES | googlesuper:GOOGLESUPER_QUERY_TABLE | `sql` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_TABLES |
+| googlesuper:GOOGLESUPER_LIST_TASK_LISTS | googlesuper:GOOGLESUPER_CLEAR_TASKS | `tasklist` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_TASK_LISTS |
+| googlesuper:GOOGLESUPER_LIST_TASK_LISTS | googlesuper:GOOGLESUPER_INSERT_TASK | `tasklist_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_TASK_LISTS |
+| googlesuper:GOOGLESUPER_LIST_THREADS | googlesuper:GOOGLESUPER_ADD_LABEL_TO_EMAIL | `message_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_THREADS |
+| googlesuper:GOOGLESUPER_LIST_THREADS | googlesuper:GOOGLESUPER_BATCH_DELETE_MESSAGES | `messageIds` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_THREADS |
+| googlesuper:GOOGLESUPER_LIST_THREADS | googlesuper:GOOGLESUPER_BATCH_MODIFY_MESSAGES | `messageIds` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_THREADS |
+| googlesuper:GOOGLESUPER_LIST_THREADS | googlesuper:GOOGLESUPER_FETCH_MESSAGE_BY_THREAD_ID | `thread_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_THREADS |
+| googlesuper:GOOGLESUPER_LIST_THREADS | googlesuper:GOOGLESUPER_REPLY_TO_THREAD | `thread_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_THREADS |
+| googlesuper:GOOGLESUPER_LIST_TRANSCRIPT_ENTRIES | googlesuper:GOOGLESUPER_GET_TRANSCRIPT_ENTRY | `name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_TRANSCRIPT_ENTRIES |
+| googlesuper:GOOGLESUPER_NEARBY_SEARCH | googlesuper:GOOGLESUPER_GET_PLACE_DETAILS | `name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_NEARBY_SEARCH |
 
 ## Unresolved required inputs
 
 | Tool | Input | Reason |
 | --- | --- | --- |
 | github:GITHUB_ABORT_REPOSITORY_MIGRATION | `migrationId` | No confident upstream tool was found. |
+| github:GITHUB_ACCEPT_REPOSITORY_INVITATION | `invitation_id` | No confident upstream tool was found. |
+| github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `username` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_APP_ACCESS_RESTRICTIONS | `apps` | No confident upstream tool was found. |
+| github:GITHUB_ADD_APP_ACCESS_RESTRICTIONS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_APP_ACCESS_RESTRICTIONS | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_ASSIGNEES_TO_AN_ISSUE | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_ASSIGNEES_TO_AN_ISSUE | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_EMAIL_ADDRESS_FOR_AUTHENTICATED_USER | `emails` | No confident upstream tool was found. |
+| github:GITHUB_ADD_FIELD_TO_USER_PROJECT | `data_type` | No confident upstream tool was found. |
 | github:GITHUB_ADD_FIELD_TO_USER_PROJECT | `name` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_FIELD_TO_USER_PROJECT | `username` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_ITEM_TO_USER_PROJECT | `type` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_ITEM_TO_USER_PROJECT | `username` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_LABELS_TO_AN_ISSUE | `labels` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_LABELS_TO_AN_ISSUE | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_LABELS_TO_AN_ISSUE | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_MEMBERSHIP_FOR_USER | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_MEMBERSHIP_FOR_USER | `team_slug` | No confident upstream tool was found. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_MEMBERSHIP_FOR_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_PROJECT_PERMISSIONS | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_PROJECT_PERMISSIONS | `team_slug` | No confident upstream tool was found. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_ADD_ORG_RUNNER_LABELS | `labels` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_ORG_RUNNER_LABELS | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_ORG_RUNNER_LABELS | `runner_id` | No confident upstream tool was found. |
+| github:GITHUB_ADD_PROJECT_COLLABORATOR | `username` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_REPO_TO_ORG_SECRET_WITH_SELECTED_ACCESS | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_REPO_TO_ORG_SECRET_WITH_SELECTED_ACCESS | `secret_name` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_REPO_TO_ORG_SECRET_WITH_SELECTED_VISIBILITY | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_REPO_TO_ORG_SECRET_WITH_SELECTED_VISIBILITY | `secret_name` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_RUNNER_LABELS | `labels` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_RUNNER_LABELS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_RUNNER_LABELS | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_RUNNER_LABELS | `runner_id` | No confident upstream tool was found. |
+| github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_SECRET | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_SECRET | `secret_name` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_VARIABLE | `name` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_VARIABLE | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_USER_SECRET | `secret_name` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_SOCIAL_ACCOUNTS_FOR_AUTHENTICATED_USER | `account_urls` | No confident upstream tool was found. |
+| github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `contexts` | No confident upstream tool was found. |
+| github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SUB_ISSUE | `issue_id` | No confident upstream tool was found. |
+| github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `teams` | No confident upstream tool was found. |
+| github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `users` | No confident upstream tool was found. |
+| github:GITHUB_ADD_USERS_TO_CODESPACES_ACCESS_FOR_ORGANIZATION | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ADD_USERS_TO_CODESPACES_ACCESS_FOR_ORGANIZATION | `selected_usernames` | No confident upstream tool was found. |
+| github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `run_id` | No confident upstream tool was found. |
+| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_TEAM | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_TEAM | `role_id` | No confident upstream tool was found. |
+| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_TEAM | `team_slug` | No confident upstream tool was found. |
+| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_USER | `org` | Likely needs a user-provided value. |
+| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_USER | `role_id` | No confident upstream tool was found. |
+| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_BLOCK_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_BLOCK_USER_FROM_ORGANIZATION | `org` | Likely needs a user-provided value. |
+| github:GITHUB_BLOCK_USER_FROM_ORGANIZATION | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CANCEL_GITHUB_PAGES_DEPLOYMENT | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CANCEL_GITHUB_PAGES_DEPLOYMENT | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CANCEL_WORKFLOW_RUN | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CANCEL_WORKFLOW_RUN | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CANCEL_WORKFLOW_RUN | `run_id` | No confident upstream tool was found. |
+| github:GITHUB_CHECK_IF_PULL_REQUEST_HAS_BEEN_MERGED | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_PULL_REQUEST_HAS_BEEN_MERGED | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `assignee` | No confident upstream tool was found. |
+| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `assignee` | No confident upstream tool was found. |
+| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_FOLLOWS_ANOTHER_USER | `target_user` | No confident upstream tool was found. |
+| github:GITHUB_CHECK_IF_USER_FOLLOWS_ANOTHER_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_IS_BLOCKED_BY_AUTHENTICATED_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_IS_BLOCKED_BY_ORGANIZATION | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_IS_BLOCKED_BY_ORGANIZATION | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_IS_REPOSITORY_COLLABORATOR | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_IS_REPOSITORY_COLLABORATOR | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_IF_USER_IS_REPOSITORY_COLLABORATOR | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_PERSON_FOLLOWED_BY_AUTH_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_PRIVATE_VULNERABILITY_REPORTING_STATUS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_PRIVATE_VULNERABILITY_REPORTING_STATUS | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_PUBLIC_ORGANIZATION_MEMBERSHIP_FOR_USER | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_PUBLIC_ORGANIZATION_MEMBERSHIP_FOR_USER | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_PROJECT | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_PROJECT | `team_slug` | No confident upstream tool was found. |
+| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_CHECK_TOKEN | `access_token` | Likely needs a user-provided value. |
+| github:GITHUB_CHECK_TOKEN | `client_id` | No confident upstream tool was found. |
+| github:GITHUB_CLEAR_PROJECT_V2_ITEM_FIELD_VALUE | `fieldId` | No confident upstream tool was found. |
+| github:GITHUB_CLEAR_PROJECT_V2_ITEM_FIELD_VALUE | `itemId` | No confident upstream tool was found. |
+| github:GITHUB_CLEAR_REPOSITORY_CACHE_BY_KEY | `key` | No confident upstream tool was found. |
+| github:GITHUB_CLEAR_REPOSITORY_CACHE_BY_KEY | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CLEAR_REPOSITORY_CACHE_BY_KEY | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CLEAR_SELF_HOSTED_RUNNER_ORG_LABELS | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CLEAR_SELF_HOSTED_RUNNER_ORG_LABELS | `runner_id` | No confident upstream tool was found. |
 | github:GITHUB_COMMIT_MULTIPLE_FILES | `message` | Likely needs a user-provided value. |
+| github:GITHUB_COMMIT_MULTIPLE_FILES | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_COMMIT_MULTIPLE_FILES | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_COMPARE_TWO_COMMITS | `basehead` | No confident upstream tool was found. |
+| github:GITHUB_COMPARE_TWO_COMMITS | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_COMPARE_TWO_COMMITS | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_CONFIGURE_JIT_RUNNER_FOR_ORG | `labels` | Likely needs a user-provided value. |
 | github:GITHUB_CONFIGURE_JIT_RUNNER_FOR_ORG | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_BLOB | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_CHECK_RUN | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_COMMIT | `message` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_COMMIT_COMMENT | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_COMMIT_STATUS | `state` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_CUSTOM_ORGANIZATION_ROLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_CUSTOM_ORGANIZATION_ROLE | `permissions` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_DEPLOYMENT_BRANCH_POLICY | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_DEPLOYMENT_BRANCH_POLICY | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_DEPLOYMENT_STATUS | `state` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_DISCUSSION | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_DISCUSSION | `title` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_DISCUSSION_COMMENT | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_GIST_COMMENT | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_GITHUB_PAGES_DEPLOYMENT | `oidc_token` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_LABEL | `color` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_LABEL | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_MILESTONE | `title` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_PROJECT_COLUMN | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_RELEASE | `tag_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPLY_FOR_A_REVIEW_COMMENT | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPOSITORY_FOR_THE_AUTHENTICATED_USER | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPOSITORY_FROM_AN_UNPUBLISHED_CODESPACE | `codespace_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPOSITORY_PROJECT | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPOSITORY_RULESET | `enforcement` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_A_REPOSITORY_RULESET | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPOSITORY_USING_A_TEMPLATE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REPOSITORY_VARIABLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_REVIEW_COMMENT_FOR_A_PULL_REQUEST | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_SCOPED_ACCESS_TOKEN | `access_token` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_SNAPSHOT_OF_DEPENDENCIES_FOR_A_REPOSITORY | `scanned` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_A_TAG_OBJECT | `message` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_TEAM | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_A_USER_PROJECT | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ENVIRONMENT_VARIABLE | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ENVIRONMENT_VARIABLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ISSUE | `title` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ISSUE_COMMENT | `body` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ORGANIZATION_PROJECT | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ORGANIZATION_REPOSITORY | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ORGANIZATION_VARIABLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_AN_ORGANIZATION_VARIABLE | `visibility` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_DEPLOYMENT_PROTECTION_RULE | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_DRAFT_ITEM_FOR_USER_PROJECT | `title` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_INFERENCE_CHAT_COMPLETIONS | `messages` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_INFERENCE_EMBEDDINGS | `input` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_ISSUE_TYPE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_JIT_RUNNER_CONFIG | `labels` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_JIT_RUNNER_CONFIG | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_A_REPOSITORY_SECRET | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_A_SECRET_FOR_THE_AUTHENTICATED_USER | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_AN_ENVIRONMENT | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_AN_ENVIRONMENT_SECRET | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_AN_ENVIRONMENT_SECRET | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_AN_ORGANIZATION_SECRET | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_AN_ORGANIZATION_SECRET | `visibility` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_CUSTOM_PROPERTY_ORG | `custom_property_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_FILE_CONTENTS | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_FILE_CONTENTS | `message` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_OR_UPDATE_REPO_SECRET_WITH_ENCRYPTED_VALUE | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_A_COMMIT_COMMENT | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_A_PULL_REQUEST_REVIEW_COMMENT | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_A_RELEASE | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_A_TEAM_DISCUSSION | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_A_TEAM_DISCUSSION_COMMENT | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_AN_ISSUE | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_REACTION_FOR_AN_ISSUE_COMMENT | `content` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_SPONSORS_TIER | `amount` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_SPONSORS_TIER | `description` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_SPONSORSHIP | `amount` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_UPDATE_ORG_SECRET_WITH_LIB_SODIUM | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_UPDATE_ORG_SECRET_WITH_LIB_SODIUM | `visibility` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_USER_LIST | `name` | Likely needs a user-provided value. |
-| github:GITHUB_CREATE_VIEW_FOR_USER_PROJECT | `layout` | No confident upstream tool was found. |
-| github:GITHUB_CREATE_VIEW_FOR_USER_PROJECT | `name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_A_FILE | `message` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_A_PACKAGE_VERSION_FOR_THE_AUTHENTICATED_USER | `package_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_A_PACKAGE_VERSION_FOR_THE_AUTHENTICATED_USER | `package_type` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_A_REPOSITORY_SECRET | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_A_REPOSITORY_VARIABLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_A_SECRET_FOR_THE_AUTHENTICATED_USER | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_APP_AUTHORIZATION | `access_token` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_APP_TOKEN | `access_token` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_CODESPACE | `codespace_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_DEPENDEBOT_SECRET_BY_NAME | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_DEPLOYMENT_BRANCH_POLICY | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ENVIRONMENT | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ENVIRONMENT_SECRET | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ENVIRONMENT_SECRET | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ENVIRONMENT_VARIABLE | `environment_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ENVIRONMENT_VARIABLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_LABEL | `name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ORG_CODESPACE | `codespace_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ORG_PACKAGE | `package_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ORG_PACKAGE | `package_type` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ORGANIZATION_SECRET | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_ORGANIZATION_VARIABLE | `name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_PACKAGE | `package_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_PACKAGE | `package_type` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_PACKAGE_VERSION_FOR_A_USER | `package_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_PACKAGE_VERSION_FOR_A_USER | `package_type` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_PACKAGE_VERSION_FOR_AN_ORGANIZATION | `package_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_PACKAGE_VERSION_FOR_AN_ORGANIZATION | `package_type` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_REPO_CODESPACE_SECRET_BY_NAME | `secret_name` | Likely needs a user-provided value. |
-| github:GITHUB_DELETE_USER_LIST | `listId` | No confident upstream tool was found. |
+| github:GITHUB_CONFIGURE_JIT_RUNNER_FOR_ORG | `org` | Likely needs a user-provided value. |
