@@ -1,14 +1,14 @@
 # Composio Tool Dependency Graph
 
-Generated at: 2026-04-28T14:41:13.528Z
+Generated at: 2026-04-28T15:43:55.409Z
 
 Toolkits: googlesuper, github
 
 ## Summary
 
 - Tools analyzed: 1304
-- Dependency edges: 577
-- Required inputs without confident upstream tools: 2024
+- Dependency edges: 1393
+- Required inputs without confident upstream tools: 1730
 
 ## Highest-confidence edges
 
@@ -25,16 +25,12 @@ Toolkits: googlesuper, github
 | github:GITHUB_LIST_ORG_RESOURCE_ACCESS_TOKENS | github:GITHUB_UPDATE_TOKEN_ORG_ACCESS | `pat_id` | 0.98 | heuristic | input description explicitly references GITHUB_LIST_ORG_RESOURCE_ACCESS_TOKENS |
 | github:GITHUB_LIST_WORKFLOW_RUN_ARTIFACTS | github:GITHUB_DOWNLOAD_AN_ARTIFACT | `artifact_id` | 0.98 | heuristic | input description explicitly references GITHUB_LIST_WORKFLOW_RUN_ARTIFACTS |
 | googlesuper:GOOGLESUPER_ADD_LABEL_TO_EMAIL | googlesuper:GOOGLESUPER_DELETE_LABEL | `label_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_ADD_LABEL_TO_EMAIL |
-| googlesuper:GOOGLESUPER_APPEND_DIMENSION | googlesuper:GOOGLESUPER_VALUES_UPDATE | `range` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_APPEND_DIMENSION |
-| googlesuper:GOOGLESUPER_BATCH_DELETE_MESSAGES | googlesuper:GOOGLESUPER_DELETE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_BATCH_DELETE_MESSAGES |
-| googlesuper:GOOGLESUPER_COPY_FILE | googlesuper:GOOGLESUPER_EDIT_FILE | `content` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_COPY_FILE |
 | googlesuper:GOOGLESUPER_CREATE_COMMENT | googlesuper:GOOGLESUPER_DELETE_COMMENT | `comment_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_COMMENT |
 | googlesuper:GOOGLESUPER_CREATE_DOCUMENT | googlesuper:GOOGLESUPER_UPDATE_DOCUMENT_SECTION_MARKDOWN | `document_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_DOCUMENT |
 | googlesuper:GOOGLESUPER_CREATE_EMAIL_DRAFT | googlesuper:GOOGLESUPER_DELETE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_EMAIL_DRAFT |
 | googlesuper:GOOGLESUPER_CREATE_EMAIL_DRAFT | googlesuper:GOOGLESUPER_SEND_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_EMAIL_DRAFT |
 | googlesuper:GOOGLESUPER_CREATE_EMAIL_DRAFT | googlesuper:GOOGLESUPER_UPDATE_DRAFT | `draft_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_EMAIL_DRAFT |
 | googlesuper:GOOGLESUPER_CREATE_FOOTER | googlesuper:GOOGLESUPER_DELETE_FOOTER | `footer_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_CREATE_FOOTER |
-| googlesuper:GOOGLESUPER_EVENTS_INSTANCES | googlesuper:GOOGLESUPER_DELETE_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_INSTANCES |
 | googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_EVENTS_GET | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
 | googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_EVENTS_INSTANCES | `eventId` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
 | googlesuper:GOOGLESUPER_EVENTS_LIST | googlesuper:GOOGLESUPER_PATCH_EVENT | `event_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_EVENTS_LIST |
@@ -94,13 +90,16 @@ Toolkits: googlesuper, github
 | googlesuper:GOOGLESUPER_LIST_THREADS | googlesuper:GOOGLESUPER_REPLY_TO_THREAD | `thread_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_THREADS |
 | googlesuper:GOOGLESUPER_LIST_TRANSCRIPT_ENTRIES | googlesuper:GOOGLESUPER_GET_TRANSCRIPT_ENTRY | `name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_LIST_TRANSCRIPT_ENTRIES |
 | googlesuper:GOOGLESUPER_NEARBY_SEARCH | googlesuper:GOOGLESUPER_GET_PLACE_DETAILS | `name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_NEARBY_SEARCH |
+| googlesuper:GOOGLESUPER_SEARCH_DOCUMENTS | googlesuper:GOOGLESUPER_CREATE_COMMENT | `file_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_SEARCH_DOCUMENTS |
+| googlesuper:GOOGLESUPER_SEARCH_DOCUMENTS | googlesuper:GOOGLESUPER_GET_DOCUMENT_BY_ID | `id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_SEARCH_DOCUMENTS |
+| googlesuper:GOOGLESUPER_SEARCH_SPREADSHEETS | googlesuper:GOOGLESUPER_GET_TABLE_SCHEMA | `spreadsheet_id` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_SEARCH_SPREADSHEETS |
+| googlesuper:GOOGLESUPER_TEXT_SEARCH | googlesuper:GOOGLESUPER_GET_PLACE_DETAILS | `name` | 0.98 | heuristic | input description explicitly references GOOGLESUPER_TEXT_SEARCH |
 
 ## Unresolved required inputs
 
 | Tool | Input | Reason |
 | --- | --- | --- |
 | github:GITHUB_ABORT_REPOSITORY_MIGRATION | `migrationId` | No confident upstream tool was found. |
-| github:GITHUB_ACCEPT_REPOSITORY_INVITATION | `invitation_id` | No confident upstream tool was found. |
 | github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_A_REPOSITORY_COLLABORATOR | `username` | Likely needs a user-provided value. |
@@ -109,7 +108,6 @@ Toolkits: googlesuper, github
 | github:GITHUB_ADD_APP_ACCESS_RESTRICTIONS | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_ASSIGNEES_TO_AN_ISSUE | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_ASSIGNEES_TO_AN_ISSUE | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_EMAIL_ADDRESS_FOR_AUTHENTICATED_USER | `emails` | No confident upstream tool was found. |
 | github:GITHUB_ADD_FIELD_TO_USER_PROJECT | `data_type` | No confident upstream tool was found. |
 | github:GITHUB_ADD_FIELD_TO_USER_PROJECT | `name` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_FIELD_TO_USER_PROJECT | `username` | Likely needs a user-provided value. |
@@ -119,17 +117,13 @@ Toolkits: googlesuper, github
 | github:GITHUB_ADD_LABELS_TO_AN_ISSUE | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_LABELS_TO_AN_ISSUE | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_OR_UPDATE_TEAM_MEMBERSHIP_FOR_USER | `org` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_OR_UPDATE_TEAM_MEMBERSHIP_FOR_USER | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_ADD_OR_UPDATE_TEAM_MEMBERSHIP_FOR_USER | `username` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_OR_UPDATE_TEAM_PROJECT_PERMISSIONS | `org` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_OR_UPDATE_TEAM_PROJECT_PERMISSIONS | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_OR_UPDATE_TEAM_REPOSITORY_PERMISSIONS | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_ADD_ORG_RUNNER_LABELS | `labels` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_ORG_RUNNER_LABELS | `org` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_ORG_RUNNER_LABELS | `runner_id` | No confident upstream tool was found. |
 | github:GITHUB_ADD_PROJECT_COLLABORATOR | `username` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_REPO_TO_ORG_SECRET_WITH_SELECTED_ACCESS | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_REPO_TO_ORG_SECRET_WITH_SELECTED_ACCESS | `secret_name` | Likely needs a user-provided value. |
@@ -138,33 +132,24 @@ Toolkits: googlesuper, github
 | github:GITHUB_ADD_RUNNER_LABELS | `labels` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_RUNNER_LABELS | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_RUNNER_LABELS | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_RUNNER_LABELS | `runner_id` | No confident upstream tool was found. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_SECRET | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_SECRET | `secret_name` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_VARIABLE | `name` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_ORGANIZATION_VARIABLE | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SELECTED_REPOSITORY_TO_USER_SECRET | `secret_name` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_SOCIAL_ACCOUNTS_FOR_AUTHENTICATED_USER | `account_urls` | No confident upstream tool was found. |
-| github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `contexts` | No confident upstream tool was found. |
 | github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_STATUS_CHECK_CONTEXTS | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_SUB_ISSUE | `issue_id` | No confident upstream tool was found. |
 | github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_TEAM_ACCESS_RESTRICTIONS | `teams` | No confident upstream tool was found. |
 | github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_ADD_USER_ACCESS_RESTRICTIONS | `users` | No confident upstream tool was found. |
 | github:GITHUB_ADD_USERS_TO_CODESPACES_ACCESS_FOR_ORGANIZATION | `org` | Likely needs a user-provided value. |
 | github:GITHUB_ADD_USERS_TO_CODESPACES_ACCESS_FOR_ORGANIZATION | `selected_usernames` | No confident upstream tool was found. |
 | github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_APPROVE_WORKFLOW_RUN_FOR_FORK_PULL_REQUEST | `run_id` | No confident upstream tool was found. |
 | github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_TEAM | `org` | Likely needs a user-provided value. |
-| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_TEAM | `role_id` | No confident upstream tool was found. |
-| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_TEAM | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_USER | `org` | Likely needs a user-provided value. |
-| github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_USER | `role_id` | No confident upstream tool was found. |
 | github:GITHUB_ASSIGN_ORGANIZATION_ROLE_TO_USER | `username` | Likely needs a user-provided value. |
 | github:GITHUB_BLOCK_USER | `username` | Likely needs a user-provided value. |
 | github:GITHUB_BLOCK_USER_FROM_ORGANIZATION | `org` | Likely needs a user-provided value. |
@@ -173,13 +158,10 @@ Toolkits: googlesuper, github
 | github:GITHUB_CANCEL_GITHUB_PAGES_DEPLOYMENT | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_CANCEL_WORKFLOW_RUN | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_CANCEL_WORKFLOW_RUN | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_CANCEL_WORKFLOW_RUN | `run_id` | No confident upstream tool was found. |
 | github:GITHUB_CHECK_IF_PULL_REQUEST_HAS_BEEN_MERGED | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_IF_PULL_REQUEST_HAS_BEEN_MERGED | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `assignee` | No confident upstream tool was found. |
 | github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `assignee` | No confident upstream tool was found. |
 | github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_IF_USER_CAN_BE_ASSIGNED_TO_ISSUE | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_IF_USER_FOLLOWS_ANOTHER_USER | `target_user` | No confident upstream tool was found. |
@@ -196,11 +178,9 @@ Toolkits: googlesuper, github
 | github:GITHUB_CHECK_PUBLIC_ORGANIZATION_MEMBERSHIP_FOR_USER | `org` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_PUBLIC_ORGANIZATION_MEMBERSHIP_FOR_USER | `username` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_PROJECT | `org` | Likely needs a user-provided value. |
-| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_PROJECT | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `org` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `repo` | Likely needs a user-provided value. |
-| github:GITHUB_CHECK_TEAM_PERMISSIONS_FOR_A_REPOSITORY | `team_slug` | No confident upstream tool was found. |
 | github:GITHUB_CHECK_TOKEN | `access_token` | Likely needs a user-provided value. |
 | github:GITHUB_CHECK_TOKEN | `client_id` | No confident upstream tool was found. |
 | github:GITHUB_CLEAR_PROJECT_V2_ITEM_FIELD_VALUE | `fieldId` | No confident upstream tool was found. |
@@ -209,7 +189,6 @@ Toolkits: googlesuper, github
 | github:GITHUB_CLEAR_REPOSITORY_CACHE_BY_KEY | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_CLEAR_REPOSITORY_CACHE_BY_KEY | `repo` | Likely needs a user-provided value. |
 | github:GITHUB_CLEAR_SELF_HOSTED_RUNNER_ORG_LABELS | `org` | Likely needs a user-provided value. |
-| github:GITHUB_CLEAR_SELF_HOSTED_RUNNER_ORG_LABELS | `runner_id` | No confident upstream tool was found. |
 | github:GITHUB_COMMIT_MULTIPLE_FILES | `message` | Likely needs a user-provided value. |
 | github:GITHUB_COMMIT_MULTIPLE_FILES | `owner` | Likely needs a user-provided value. |
 | github:GITHUB_COMMIT_MULTIPLE_FILES | `repo` | Likely needs a user-provided value. |
@@ -219,3 +198,24 @@ Toolkits: googlesuper, github
 | github:GITHUB_CONFIGURE_JIT_RUNNER_FOR_ORG | `labels` | Likely needs a user-provided value. |
 | github:GITHUB_CONFIGURE_JIT_RUNNER_FOR_ORG | `name` | Likely needs a user-provided value. |
 | github:GITHUB_CONFIGURE_JIT_RUNNER_FOR_ORG | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CONFIGURE_OIDC_SUBJECT_CLAIM_TEMPLATE | `include_claim_keys` | No confident upstream tool was found. |
+| github:GITHUB_CONFIGURE_OIDC_SUBJECT_CLAIM_TEMPLATE | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CONVERT_ORG_MEMBER_TO_OUTSIDE_COLLABORATOR | `org` | Likely needs a user-provided value. |
+| github:GITHUB_CONVERT_ORG_MEMBER_TO_OUTSIDE_COLLABORATOR | `username` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_BLOB | `content` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_BLOB | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_BLOB | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CHECK_RUN | `name` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CHECK_RUN | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CHECK_RUN | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CHECK_SUITE | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CHECK_SUITE | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CODESPACE_FROM_A_PULL_REQUEST | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CODESPACE_FROM_A_PULL_REQUEST | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CODESPACE_IN_A_REPOSITORY | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_CODESPACE_IN_A_REPOSITORY | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_COMMIT | `message` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_COMMIT | `owner` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_COMMIT | `repo` | Likely needs a user-provided value. |
+| github:GITHUB_CREATE_A_COMMIT | `tree` | No confident upstream tool was found. |
+| github:GITHUB_CREATE_A_COMMIT_COMMENT | `body` | Likely needs a user-provided value. |
