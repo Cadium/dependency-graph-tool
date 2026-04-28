@@ -145,11 +145,20 @@ async function main() {
   ).sort((a, b) => a.id.localeCompare(b.id));
 
   const heuristicEdges = inferHeuristicEdges(tools);
-  const llmEdges = await inferLlmEdges(tools).catch((error: unknown) => {
-    console.warn(`LLM refinement skipped: ${formatError(error)}`);
-    return [];
-  });
-  const edges = mergeEdges([...heuristicEdges, ...llmEdges], tools);
+  const semanticEdges = inferSemanticEdges(tools);
+  const coveredKeys = new Set(
+    [...heuristicEdges, ...semanticEdges].map((e) => `${e.to}:${e.input}`),
+  );
+  const llmEdges = await inferLlmEdges(tools, coveredKeys).catch(
+    (error: unknown) => {
+      console.warn(`LLM refinement skipped: ${formatError(error)}`);
+      return [];
+    },
+  );
+  const edges = mergeEdges(
+    [...heuristicEdges, ...semanticEdges, ...llmEdges],
+    tools,
+  );
   const unresolvedInputs = findUnresolvedInputs(tools, edges);
 
   const graph: Graph = {
@@ -399,6 +408,7 @@ function explicitDependencyEdges(
 
   return referencedTools
     .filter((source) => source.id !== target.id)
+    .filter((source) => isProducerTool(source))
     .slice(0, 3)
     .map((source) => ({
       from: source.id,
@@ -408,6 +418,12 @@ function explicitDependencyEdges(
       reason: `input description explicitly references ${source.name}`,
       source: "heuristic" as const,
     }));
+}
+
+function isProducerTool(tool: ToolSummary): boolean {
+  if (producerVerbScore(tool) > 0) return true;
+  const name = tool.name.toUpperCase();
+  return /(^|_)(CREATE|INSERT|GENERATE|MAKE|ADD)(_|$)/.test(name);
 }
 
 function extractReferencedTools(
@@ -635,83 +651,369 @@ function isPrimitiveUserInput(input: string) {
   );
 }
 
-async function inferLlmEdges(tools: ToolSummary[]): Promise<DependencyEdge[]> {
+// Semantic rules that bridge the gap between heuristic text-matching and full LLM inference.
+// Handles cases where the non-generic token in a parameter name (e.g. "slug" in "team_slug")
+// does not appear verbatim in source tool descriptions, and cross-domain relationships like
+// contacts → email where no naming overlap exists.
+function inferSemanticEdges(tools: ToolSummary[]): DependencyEdge[] {
+  const edges: DependencyEdge[] = [];
+  const byId = new Map(tools.map((t) => [t.id, t]));
+
+  type SemanticRule = {
+    // matches the required input name of the target tool
+    inputPattern: RegExp;
+    // toolkit the rule applies to
+    toolkit: Toolkit;
+    // regex against source tool NAME — all matching producer tools become sources
+    sourcePattern: RegExp;
+    // optional: only apply when target name also matches this
+    targetPattern?: RegExp;
+    confidence: number;
+    reason: string;
+  };
+
+  const RULES: SemanticRule[] = [
+    // ── GitHub ──────────────────────────────────────────────────────────────
+    {
+      inputPattern: /^team_slug$/,
+      toolkit: "github",
+      sourcePattern: /LIST_TEAMS/,
+      confidence: 0.82,
+      reason: "team_slug is a team identifier; LIST_TEAMS enumerates teams with slug fields",
+    },
+    {
+      inputPattern: /^run_id$/,
+      toolkit: "github",
+      sourcePattern: /LIST_WORKFLOW_RUNS/,
+      confidence: 0.84,
+      reason: "run_id is a workflow run identifier; LIST_WORKFLOW_RUNS returns run IDs",
+    },
+    {
+      inputPattern: /^runner_id$/,
+      toolkit: "github",
+      sourcePattern: /LIST_SELF_HOSTED_RUNNERS/,
+      confidence: 0.82,
+      reason: "runner_id is a self-hosted runner identifier; LIST_SELF_HOSTED_RUNNERS enumerates runners",
+    },
+    {
+      inputPattern: /^role_id$/,
+      toolkit: "github",
+      sourcePattern: /LIST_ORGANIZATION_ROLES/,
+      confidence: 0.82,
+      reason: "role_id is an org role identifier; LIST_ORGANIZATION_ROLES enumerates roles",
+    },
+    {
+      inputPattern: /^reaction_id$/,
+      toolkit: "github",
+      sourcePattern: /LIST_REACTIONS/,
+      confidence: 0.80,
+      reason: "reaction_id is a reaction identifier; LIST_REACTIONS_FOR_* tools enumerate reactions",
+    },
+    {
+      inputPattern: /^pat_id$|^pat_request_id$/,
+      toolkit: "github",
+      sourcePattern: /LIST_ORG_RESOURCE_ACCESS_TOKENS|LIST_PAT|LIST_FINE_GRAINED/,
+      confidence: 0.80,
+      reason: "pat_id is a fine-grained PAT identifier; org PAT listing tools provide these IDs",
+    },
+    {
+      inputPattern: /^invitation_id$/,
+      toolkit: "github",
+      sourcePattern: /LIST_PENDING.*INVITATION|LIST_INVITATION/,
+      confidence: 0.80,
+      reason: "invitation_id is an org invitation identifier; LIST_PENDING_ORGANIZATION_INVITATIONS provides IDs",
+    },
+    // ── Google Super ────────────────────────────────────────────────────────
+    {
+      inputPattern: /^spreadsheet_id$/,
+      toolkit: "googlesuper",
+      sourcePattern: /GET_SPREADSHEET_INFO|LIST_SPREADSHEET/,
+      confidence: 0.84,
+      reason: "spreadsheet_id is a Google Sheets identifier; GET_SPREADSHEET_INFO retrieves spreadsheet metadata including ID",
+    },
+    {
+      inputPattern: /^document_id$/,
+      toolkit: "googlesuper",
+      sourcePattern: /CREATE_DOCUMENT|GET_DOCUMENT_BY_ID|LIST_DOCUMENTS/,
+      confidence: 0.82,
+      reason: "document_id is a Google Docs identifier; CREATE_DOCUMENT returns it, GET_DOCUMENT_BY_ID accepts it",
+    },
+    // Contacts → email sending: the explicit task example from the readme
+    {
+      inputPattern: /^recipient_email$|^extra_recipients$/,
+      toolkit: "googlesuper",
+      sourcePattern: /GET_CONTACTS/,
+      confidence: 0.85,
+      reason: "recipient email address can be looked up by name using GET_CONTACTS before sending",
+    },
+  ];
+
+  for (const rule of RULES) {
+    const toolkitTools = tools.filter((t) => t.toolkit === rule.toolkit);
+    const sources = toolkitTools
+      .filter((t) => isProducerTool(t) && rule.sourcePattern.test(t.name));
+
+    if (sources.length === 0) continue;
+
+    for (const target of toolkitTools) {
+      if (rule.targetPattern && !rule.targetPattern.test(target.name)) continue;
+
+      // Check required params first, then important optional params
+      const matchingParams = [
+        ...target.requiredParameters,
+        ...target.parameters.filter((p) => !p.required),
+      ].filter((p) => rule.inputPattern.test(p.name));
+
+      for (const param of matchingParams) {
+        for (const source of sources) {
+          if (source.id === target.id) continue;
+          const existing = byId.get(source.id);
+          if (!existing) continue;
+          edges.push({
+            from: source.id,
+            to: target.id,
+            input: param.name,
+            confidence: rule.confidence,
+            reason: rule.reason,
+            source: "heuristic",
+          });
+        }
+      }
+    }
+  }
+
+  // General entity-prefix matching for 5+ char entity tokens not caught above
+  for (const target of tools) {
+    for (const input of target.requiredParameters) {
+      if (isPrimitiveUserInput(input.name)) continue;
+
+      const entity = extractEntityToken(input.name);
+      if (!entity || entity.length < 5) continue;
+
+      const entityUpper = entity.toUpperCase();
+      const candidates = tools
+        .filter((t) => t.id !== target.id && t.toolkit === target.toolkit)
+        .filter((t) => isProducerTool(t))
+        .filter((t) => t.name.toUpperCase().includes(entityUpper))
+        .sort((a, b) => {
+          // Prefer tools whose name ends with the entity plural form (closest semantic match)
+          const aEnds = a.name.toUpperCase().endsWith(entityUpper + "S") ? 1 : 0;
+          const bEnds = b.name.toUpperCase().endsWith(entityUpper + "S") ? 1 : 0;
+          return bEnds - aEnds || producerVerbScore(b) - producerVerbScore(a);
+        })
+        .slice(0, 1);
+
+      for (const source of candidates) {
+        edges.push({
+          from: source.id,
+          to: target.id,
+          input: input.name,
+          confidence: 0.76,
+          reason: `entity '${entity}' from ${input.name} resolved via source tool name match`,
+          source: "heuristic",
+        });
+      }
+    }
+  }
+
+  return edges;
+}
+
+function extractEntityToken(inputName: string): string {
+  // Strip common identifier suffixes to get the entity noun
+  return inputName
+    .replace(/_(id|ids|slug|number|sha|key|ref|url)$/i, "")
+    .toLowerCase();
+}
+
+async function inferLlmEdges(
+  tools: ToolSummary[],
+  coveredKeys: Set<string>,
+): Promise<DependencyEdge[]> {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) return [];
 
   const allEdges: DependencyEdge[] = [];
 
   for (const toolkit of TOOLKITS) {
-    const toolkitTools = tools.filter((tool) => tool.toolkit === toolkit);
-    const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "openai/gpt-4.1-mini",
-          messages: [
-            {
-              role: "system",
-              content:
-                "Return only JSON. Identify tool dependency edges where one tool can supply required input values for another tool. Prefer precise, high-confidence edges.",
-            },
-            {
-              role: "user",
-              content: JSON.stringify({
-                toolkit,
-                tools: toolkitTools.map((tool) => ({
-                  id: tool.id,
-                  name: tool.name,
-                  description: tool.description,
-                  requiredInputs: tool.requiredParameters,
-                })),
-                outputShape: {
-                  edges: [
-                    {
-                      from: "source tool id",
-                      to: "target tool id",
-                      input: "required input name",
-                      confidence: 0.7,
-                      reason: "short explanation",
-                    },
-                  ],
-                },
-              }),
-            },
-          ],
-          response_format: { type: "json_object" },
-          temperature: 0.1,
-        }),
-      },
-    );
+    const toolkitTools = tools.filter((t) => t.toolkit === toolkit);
 
-    if (!response.ok) {
-      throw new Error(
-        `OpenRouter returned ${response.status}: ${await response.text()}`,
+    // Only producer tools go into the catalog — reduces token cost and noise
+    const producerCatalog = toolkitTools
+      .filter((t) => isProducerTool(t))
+      .map((t) => `${t.id}: ${t.description.slice(0, 90)}`)
+      .join("\n");
+
+    // Target tools: those with uncovered required params OR important optional params
+    const targetTools = toolkitTools.filter((tool) => {
+      const hasUncoveredRequired = tool.requiredParameters.some(
+        (p) =>
+          !coveredKeys.has(`${tool.id}:${p.name}`) &&
+          !isPrimitiveUserInput(p.name),
       );
-    }
+      const hasImportantOptional = tool.parameters.some(
+        (p) => !p.required && isEmailOrContactParam(p.name),
+      );
+      return hasUncoveredRequired || hasImportantOptional;
+    });
 
-    const body = (await response.json()) as {
-      choices?: Array<{ message?: { content?: string } }>;
-    };
-    const content = body.choices?.[0]?.message?.content;
-    if (!content) continue;
+    if (targetTools.length === 0) continue;
 
-    const parsed = parseOpenRouterEdges(JSON.parse(content));
-    allEdges.push(
-      ...parsed.edges.map((edge) => ({
+    const BATCH_SIZE = 40;
+    for (let i = 0; i < targetTools.length; i += BATCH_SIZE) {
+      const batch = targetTools.slice(i, i + BATCH_SIZE);
+      const batchNum = Math.floor(i / BATCH_SIZE) + 1;
+      const totalBatches = Math.ceil(targetTools.length / BATCH_SIZE);
+      console.log(
+        `  LLM batch ${batchNum}/${totalBatches} (${toolkit}, ${batch.length} tools)…`,
+      );
+
+      const targets = batch
+        .map((tool) => ({
+          id: tool.id,
+          inputs: [
+            ...tool.requiredParameters
+              .filter(
+                (p) =>
+                  !coveredKeys.has(`${tool.id}:${p.name}`) &&
+                  !isPrimitiveUserInput(p.name),
+              )
+              .map((p) => ({
+                name: p.name,
+                required: true,
+                description: p.description?.slice(0, 80),
+              })),
+            ...tool.parameters
+              .filter((p) => !p.required && isEmailOrContactParam(p.name))
+              .map((p) => ({
+                name: p.name,
+                required: false,
+                description: p.description?.slice(0, 80),
+              })),
+          ],
+        }))
+        .filter((t) => t.inputs.length > 0);
+
+      if (targets.length === 0) continue;
+
+      const requestBody = JSON.stringify({
+        model: "google/gemma-3-12b-it:free",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a dependency analyst for API tools. Return only JSON. For each target tool input, identify which source tool from the producer catalog can supply that value. Only return edges with confidence >= 0.72. Use list/get/search/find/create tools as sources. Never suggest delete/send/update tools as sources.",
+          },
+          {
+            role: "user",
+            content: JSON.stringify({
+              toolkit,
+              producerCatalog,
+              targets,
+              outputShape: {
+                edges: [
+                  {
+                    from: "source tool id (e.g. googlesuper:GOOGLESUPER_LIST_FILES)",
+                    to: "target tool id",
+                    input: "input parameter name",
+                    confidence: 0.8,
+                    reason: "short explanation",
+                  },
+                ],
+              },
+            }),
+          },
+        ],
+        response_format: { type: "json_object" },
+        temperature: 0.1,
+        max_tokens: 3000,
+      });
+
+      let response: Response | undefined;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          response = await fetch(
+            "https://openrouter.ai/api/v1/chat/completions",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": "application/json",
+              },
+              body: requestBody,
+            },
+          );
+        } catch (err) {
+          console.warn(
+            `  LLM batch ${batchNum} attempt ${attempt} request failed: ${formatError(err)}`,
+          );
+          if (attempt < 3)
+            await new Promise((resolve) => setTimeout(resolve, 10000));
+          continue;
+        }
+
+        if (response.status === 429) {
+          console.warn(
+            `  LLM batch ${batchNum} attempt ${attempt} rate-limited, waiting 20s…`,
+          );
+          if (attempt < 3)
+            await new Promise((resolve) => setTimeout(resolve, 20000));
+          response = undefined;
+          continue;
+        }
+        break;
+      }
+
+      if (!response?.ok) {
+        if (response) {
+          console.warn(
+            `  LLM batch ${batchNum} (${toolkit}) HTTP ${response.status}: ${await response.text()}`,
+          );
+        }
+        continue;
+      }
+
+      const body = (await response.json()) as {
+        choices?: Array<{ message?: { content?: string } }>;
+      };
+      const content = body.choices?.[0]?.message?.content;
+      if (!content) continue;
+
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(content);
+      } catch {
+        console.warn(`  LLM batch ${batchNum} (${toolkit}) returned non-JSON`);
+        continue;
+      }
+
+      const result = parseOpenRouterEdges(parsed);
+      const batchEdges = result.edges.map((edge) => ({
         ...edge,
         confidence: Number(edge.confidence.toFixed(2)),
         source: "llm" as const,
-      })),
-    );
+      }));
+      console.log(`    → ${batchEdges.length} edges`);
+      allEdges.push(...batchEdges);
+
+      // Pace requests to stay within free-tier rate limits
+      if (i + BATCH_SIZE < targetTools.length) {
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+      }
+    }
   }
 
   return allEdges;
+}
+
+function isEmailOrContactParam(name: string): boolean {
+  const n = name.toLowerCase();
+  return (
+    n === "to" ||
+    n.includes("email") ||
+    n.includes("recipient") ||
+    n.includes("contact")
+  );
 }
 
 function parseOpenRouterEdges(value: unknown): {
