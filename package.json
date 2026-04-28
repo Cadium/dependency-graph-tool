@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "generate": "bun run src/index.ts",
+    "typecheck": "bun run tsc --noEmit",
+    "format": "bun run biome format --write .claude biome.json package.json readme.md src tsconfig.json",
+    "lint": "bun run biome check .claude biome.json package.json readme.md src tsconfig.json"
+  },
+  "dependencies": {
+    "@composio/core": "^0.8.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.10",
+    "@types/bun": "^1.3.11",
+    "typescript": "^5.9.3"
+  }
+}
